@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BitWHITE </title>
+	<script src="js/we.js"></script>
+
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery.easing.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/map.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="fonts/roboto.css">
+	<link rel="stylesheet" type="text/css" href="css/fonts.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
+	<script src="js/jquery.easing.min.js">
+		
+	</script>
+	<style type="text/css">
+	html, body{padding: 0; margin: 0;}
+	#earth_div{top: 0; right: 0; bottom: 0; left: 0;
+		position: absolute !important;
+		
+		background-image: -webkit-gradient(
+			linear,
+			left bottom,
+			left top,
+			color-stop(0, #05050F),
+			color-stop(0.15, #05050F),
+			color-stop(0.53, #05050F),
+			color-stop(0.56, #05050F),
+			color-stop(1, #05050F)
+			);
+		background-image: -moz-linear-gradient(
+			center bottom,
+			#05050F 0%,
+			#05050F 15%,
+			#05050F 53%,
+			#05050F 56%,
+			#05050F 100%
+			);
+	}
+	.message {
+		background: #194a9d;
+		padding: 8px;
+		position: absolute;
+		color: white;
+		font-family: 'Roboto', sans-serif;
+		font-size: 15px;
+		border-radius: 12px;
+		opacity: 0;
+		transition: 4s transform ease-in-out, 1.8s opacity ease-in-out;
+		/*transition-property: all;*/
+		transition-timing-function: ease-in-out;
+	}
+</style>
+</head>
+<body>
+	<div id="earth_div" style=""></div>
+	<script type="text/javascript" src = "js/earth.js"></script>
+	<script>
+		const selector = '.message:not(.processed)'
+		function update() {
+			
+			setTimeout(function() {
+				let $this = $(selector);
+				$this.addClass('processed');
+				setTimeout(function() {
+					$this.css("opacity", 1);
+
+					$this.each(function(index) {
+						$(this).css("-webkit-transform", "translate(0, -"+ randomInteger(200, 300) +"px) rotate("+ randomInteger(-45, 45) +"deg)");
+					})
+					
+
+					setTimeout(function() {
+						$this.css("opacity", 0);
+						end($this);
+					}, 2000);
+				})
+			}, 100)
+		}
+
+		function end($this) {
+			setTimeout(function () {
+				$this.addClass('processed-end');
+			}, 3000);
+		}
+
+		function randomInteger(min, max) {
+			var rand = min - 0.5 + Math.random() * (max - min + 1)
+			rand = Math.round(rand);
+			return rand;
+		}
+
+		function randomWords(count) {
+			let result = ''
+			for (var i = 0; i < count; i++) {
+				result = result + ' ' + words[randomInteger(0, words.length-1)]
+			}
+			return result;
+		}
+		// ---- 
+		(function() {
+			update();
+
+			setInterval(function() {
+				$(".message.processed-end").remove();
+			}, 1000);
+		})()
+	</script>
+	<script src="socket.io.js"></script>
+	<script>
+		var socket = io(':5000/');
+		socket.on("load", function(json) {
+			var data = JSON.parse(json);
+			startEarth(data);
+			socket.on('message', function(name, text, chat, chatid){ 
+				console.log(name, text, chat, chatid)
+
+				$("#e-chat"+ chatid).append('<div class="message" style="left: '+ 0 +'px"><b>'+ name +':</b> ' + text + '</div>');
+				update();
+			});
+		});
+
+
+	  
+	</script>
+</body>
+</html>

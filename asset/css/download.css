@@ -1,0 +1,130 @@
+.text_download{
+position: relative;
+
+height: 180px;
+}
+body::-webkit-scrollbar { width: 0; }
+
+/* ie 10+ */
+body { -ms-overflow-style: none; }
+
+/* фф (свойство больше не работает, других способов тоже нет)*/
+body { overflow: -moz-scrollbars-none; }
+body{
+	padding-bottom: 150px;
+}
+.bacground_wripper{
+	background-color: #6E4E92;
+}
+.text_download_wriper .col-11{
+	padding: 0px !important;
+}
+main p{
+	padding-left: 0px;
+	margin-top: 40px;
+	margin-bottom: 30px;
+font-family: RobotoCondensedRegular;
+font-style: normal;
+font-weight: 300;
+line-height: 27px;
+font-size: 24px;
+text-transform: uppercase;
+
+/* base active state */
+color: #6E4E92;
+}
+.box_wriper div{
+max-height: 225px;
+}
+.img_download_wripper{
+	height: 50px;
+	margin-bottom: 30px;
+}
+.desctop_linux{
+padding: 0px;
+}
+span.comit{
+
+	margin-bottom:20px;
+		margin-top:15px;
+font-family: RobotoCondensedRegular;
+font-style: normal;
+font-weight: 300;
+line-height: 15px;
+font-size: 12px;
+text-align: center;
+
+/* block text */
+color: #5E5E5E;
+}
+
+span{
+		max-width: 280px;
+		font-family: RobotoCondensedRegular;
+	font-style: normal;
+font-weight: 300;
+line-height: 15px;
+font-size: 12px;
+
+/* #3D3D3D */
+color: #3D3D3D;
+}
+
+.desctop_mac{
+	padding: 0px;
+}
+input[type="button"]:hover{
+	background-color: #6E4E92;
+	color:#FFFFFF;
+}
+input[type="button"]{
+	transition: 1s;
+	text-transform: uppercase;
+	font-family: RobotoCondensedRegular;
+	font-style: normal;
+font-weight: bold;
+line-height: normal;
+font-size: 14px;
+text-align: center;
+letter-spacing: 0.1em;
+	color: #6E4E92;
+border: 2px solid #6E4E92;
+	height: 50px;
+	width: 100%;
+	max-width: 280px;
+	background: transparent;
+/* pop-up shadow */
+box-shadow: 0px 1px 15px rgba(53, 79, 87, 0.08);
+border-radius: 8px;
+}
+.text1_center{
+	padding-top:50px;
+		margin-bottom: 0px;
+		margin-top:0px;
+	text-align: center;
+font-family:RobotoCondensedBold;
+font-style: normal;
+font-weight: bold;
+line-height: 40px;
+font-size: 36px;
+text-align: center;
+text-transform: uppercase;
+
+color: #FFFFFF;
+}
+.text2_center{
+	padding: 15px 0 0 0;
+	margin-bottom: 0px;
+	margin-top:0px;
+	text-align: center;
+
+font-family:RobotoCondensedRegular;
+font-style: normal;
+font-weight: 300;
+line-height: 20px;
+font-size: 18px;
+text-align: center;
+text-transform: uppercase;
+
+color: #FFFFFF;
+}
