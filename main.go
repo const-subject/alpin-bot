@@ -1,16 +1,18 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
+	"io/ioutil"
 	"log"
-	"net/http"
 
-	socketio "github.com/googollee/go-socket.io"
+	"github.com/const-subject/alpin-bot/socket"
 	"gopkg.in/telegram-bot-api.v4"
 )
 
 func main() {
 	token := flag.String("token", "none", "Token by bot")
+	port := flag.Int("port", 5000, "Socket port")
 	flag.Parse()
 
 	bot, err := tgbotapi.NewBotAPI(*token)
@@ -27,42 +29,24 @@ func main() {
 
 	updates, err := bot.GetUpdatesChan(u)
 
-	NewSocket(updates)
-}
-
-func NewSocket(updates tgbotapi.UpdatesChannel) {
-	server, err := socketio.NewServer(nil)
-
+	b, err := ioutil.ReadFile("markers.json")
 	if err != nil {
-		log.Fatal(err)
+		panic(err.Error())
 	}
 
-	server.On("connection", func(so socketio.Socket) {
-		so.Join("earth")
-		log.Println("New client:", so.Id())
-	})
-	server.On("error", func(so socketio.Socket, err error) {
-		log.Println("error:", err)
-	})
-
-	http.HandleFunc("/socket.io/", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Add("Access-Control-Allow-Origin", "*")
-		server.ServeHTTP(w, r)
-	})
-	http.Handle("/", http.FileServer(http.Dir("./asset")))
-
-	go http.ListenAndServe(":5000", nil)
-
-	for update := range updates {
-		if update.Message == nil ||
-			!update.Message.Chat.IsSuperGroup() && !update.Message.Chat.IsGroup() {
-			continue
-		}
-
-		log.Printf("[%s] %s", update.Message.From.FirstName, update.Message.Text)
-		server.BroadcastTo("earth", "message",
-			update.Message.From.FirstName,
-			update.Message.Text,
-			update.Message.Chat.Title)
+	var markers []socket.Marker
+	err = json.Unmarshal(b, &markers)
+	if err != nil {
+		panic(err.Error())
 	}
+
+	mm := socket.NewMarkerManager()
+	for _, marker := range markers {
+		log.Println("Marker:", marker.Name)
+		mm.Add(marker)
+	}
+
+	s := socket.NewSocket(updates, *port, mm)
+
+	s.Start()
 }
