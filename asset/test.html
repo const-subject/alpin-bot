@@ -113,7 +113,7 @@
 
 	<script src="socket.io.js"></script>
 	<script>
-		var socket = io('http://127.0.0.1:5000/');
+		var socket = io(':5000/');
 		socket.on('message', function(name, text, chat){ 
 			$(".message-home").append('<div class="message" style="left: '+ randomInteger(0, 300) +'px">' + text + '</div>');
 			update();
