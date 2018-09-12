@@ -1,0 +1,67 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "Oh6ZTSTRSAWVUrT7svHtv8JCe6c=",
+			"path": "github.com/googollee/go-engine.io",
+			"revision": "e2f255711dcb2ea41e42c6d9d98c172d7edf6509",
+			"revisionTime": "2018-08-29T09:19:31Z"
+		},
+		{
+			"checksumSHA1": "6FIMrN6tACwWN92pLJggQ70sW2o=",
+			"path": "github.com/googollee/go-engine.io/message",
+			"revision": "e2f255711dcb2ea41e42c6d9d98c172d7edf6509",
+			"revisionTime": "2018-08-29T09:19:31Z"
+		},
+		{
+			"checksumSHA1": "iVQSvmBqQC/zH9DokNSD4Kq6/M8=",
+			"path": "github.com/googollee/go-engine.io/parser",
+			"revision": "e2f255711dcb2ea41e42c6d9d98c172d7edf6509",
+			"revisionTime": "2018-08-29T09:19:31Z"
+		},
+		{
+			"checksumSHA1": "a7NIt4s2EeayjwCsWPoB0Ehj104=",
+			"path": "github.com/googollee/go-engine.io/polling",
+			"revision": "e2f255711dcb2ea41e42c6d9d98c172d7edf6509",
+			"revisionTime": "2018-08-29T09:19:31Z"
+		},
+		{
+			"checksumSHA1": "+oKFsNl/ET1R4di8y0qB4VjArYI=",
+			"path": "github.com/googollee/go-engine.io/transport",
+			"revision": "e2f255711dcb2ea41e42c6d9d98c172d7edf6509",
+			"revisionTime": "2018-08-29T09:19:31Z"
+		},
+		{
+			"checksumSHA1": "gZMrNsyYBf0sjAMsYRPXIrWpruQ=",
+			"path": "github.com/googollee/go-engine.io/websocket",
+			"revision": "e2f255711dcb2ea41e42c6d9d98c172d7edf6509",
+			"revisionTime": "2018-08-29T09:19:31Z"
+		},
+		{
+			"checksumSHA1": "V6xNHVE/E785/WFu+tA417BVf6k=",
+			"path": "github.com/googollee/go-socket.io",
+			"revision": "f12da5711bc66c18a0724987fff7f4f3db35c70f",
+			"revisionTime": "2018-06-11T07:50:05Z"
+		},
+		{
+			"checksumSHA1": "FmFR/q0Nr2RBPn8N0JABVZEF0lI=",
+			"path": "github.com/gorilla/websocket",
+			"revision": "66b9c49e59c6c48f0ffce28c2d8b8a5678502c6d",
+			"revisionTime": "2018-08-25T15:15:06Z"
+		},
+		{
+			"checksumSHA1": "mYrkYI/2iFOlfvPzsjYIKO8KUGY=",
+			"path": "github.com/technoweenie/multipartstreamer",
+			"revision": "a90a01d73ae432e2611d178c18367fbaa13e0154",
+			"revisionTime": "2013-10-20T00:18:33Z"
+		},
+		{
+			"checksumSHA1": "E/ocikF97QMi5COISrPAX/GDXuQ=",
+			"path": "gopkg.in/telegram-bot-api.v4",
+			"revision": "0e0af0c480ea98e982d5f4d45fb39577c6ab1e3e",
+			"revisionTime": "2018-03-28T13:10:29Z"
+		}
+	],
+	"rootPath": "github.com/const-subject/alpin-bot"
+}
