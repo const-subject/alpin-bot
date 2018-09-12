@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Socket test</title>
+</head>
+<body>
+	
+
+	
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test</title>
+
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+		.message {
+			background: #194a9d;
+			padding: 8px;
+			position: absolute;
+			color: white;
+			font-family: 'Roboto', sans-serif;
+			font-size: 11px;
+			border-radius: 12px;
+			opacity: 0;
+			transition: 4s transform ease-in-out, 1.8s opacity ease-in-out;
+			/*transition-property: all;*/
+			transition-timing-function: ease-in-out;
+		}
+		.message-home {
+			position: absolute;
+			width: 90%;
+		}
+	</style>
+	<script
+	  src="https://code.jquery.com/jquery-3.3.1.min.js"
+	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	  crossorigin="anonymous"></script>
+</head>
+<body>
+	<p>	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor cum ab perferendis dolores molestias hic veniam laborum corrupti quaerat ex laudantium ea, similique, sequi, pariatur, enim sapiente aliquid eaque ipsam.</p>
+	<p>Porro soluta laborum, voluptate fuga explicabo quibusdam doloremque molestias quis modi velit quas rerum sequi quasi, autem facere dolore, voluptatem sed illo deserunt saepe minus voluptatum cum fugit. Perferendis, sequi.</p>
+	<p>Nesciunt et nobis omnis, accusamus reprehenderit facilis sint ratione, perspiciatis neque dolor consectetur quam, nihil possimus. Similique natus error ipsum velit nisi qui debitis ut id nihil, obcaecati, deserunt omnis?</p>
+	<p>Ad, facere ipsam numquam, architecto tempore dicta, maxime voluptas ab, similique aspernatur quia excepturi harum incidunt voluptatem nobis adipisci repellat qui ducimus sapiente laboriosam? Autem veritatis excepturi modi maiores, nihil.</p>
+	<p>Sunt a vero sint quasi eos aspernatur, est, cupiditate doloremque asperiores aliquam dolorem nam repellat aut illo. Nihil debitis sunt repellendus tenetur tempora illum blanditiis, ipsum, eaque, temporibus ipsa rerum!</p>
+	<p>Aperiam blanditiis assumenda veniam. Ipsa dolorem vero rerum temporibus, autem. Deleniti iure, cupiditate cum quis nesciunt aut minus modi dolorum et. Impedit odit doloribus mollitia at obcaecati cum enim sit!</p>
+	<p>Illum eligendi consequatur, alias sunt non doloremque nobis voluptatibus, blanditiis vitae suscipit nulla! Illum, ipsum cupiditate commodi minus quo voluptatum, asperiores eos adipisci blanditiis totam voluptatibus corporis quidem rerum obcaecati?</p>
+	<p>Cupiditate recusandae corrupti nobis, modi eligendi similique ratione dicta natus unde aut pariatur saepe veritatis magni facere possimus vel suscipit voluptatum aspernatur illo cumque laboriosam deserunt nemo? Aliquid, adipisci eum.</p>
+	<p>Voluptatibus optio laboriosam sapiente fuga facere totam quos temporibus dignissimos dolores. Eaque velit, amet. Necessitatibus aperiam unde non deleniti ea voluptatum culpa quaerat nulla ipsam dolore nisi, quos dolor minus?</p>
+	<p>Voluptate quod praesentium incidunt consequuntur nihil fuga aliquid tempore id harum. Ut quos nobis, officia veniam, voluptate illum cum nihil quibusdam, velit cumque ad, laborum nulla perspiciatis culpa saepe impedit.</p>
+
+	<div class="message-home"></div>
+
+	<script type="">
+		const selector = '.message:not(.processed)'
+
+		function update() {
+			
+			setTimeout(function() {
+				let $this = $(selector);
+				$this.addClass('processed');
+				setTimeout(function() {
+					$this.css("opacity", 1);
+
+					$this.each(function(index) {
+						$(this).css("-webkit-transform", "translate(0, -"+ randomInteger(200, 300) +"px) rotate("+ randomInteger(-45, 45) +"deg)");
+					})
+					
+
+					setTimeout(function() {
+						$this.css("opacity", 0);
+						end($this);
+					}, 2000);
+				})
+			}, 100)
+		}
+
+		function end($this) {
+			setTimeout(function () {
+				$this.addClass('processed-end');
+			}, 3000);
+		}
+
+		function randomInteger(min, max) {
+			var rand = min - 0.5 + Math.random() * (max - min + 1)
+			rand = Math.round(rand);
+			return rand;
+		}
+
+		function randomWords(count) {
+			let result = ''
+			for (var i = 0; i < count; i++) {
+				result = result + ' ' + words[randomInteger(0, words.length-1)]
+			}
+			return result;
+		}
+		// ---- 
+		(function() {
+			update();
+
+			setInterval(function() {
+				$(".message.processed-end").remove();
+			}, 1000);
+		})()
+
+	</script>
+
+	<script src="socket.io.js"></script>
+	<script>
+		var socket = io('http://127.0.0.1:5000/');
+		socket.on('message', function(name, text, chat){ 
+			$(".message-home").append('<div class="message" style="left: '+ randomInteger(0, 300) +'px">' + text + '</div>');
+			update();
+		});
+
+	  
+	</script>
+</body>
+</html>
